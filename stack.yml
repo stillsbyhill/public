@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  www:
+    image: nginx:1.13.9
+    volumes:
+#      - ./nginx:/etc/nginx/conf.d
+      - .:/usr/share/nginx/html
+    networks:
+      - stillsbyhill
+    ports:
+      - 8081:80
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+networks:
+  stillsbyhill:
